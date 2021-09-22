@@ -1,0 +1,30 @@
+       int src = Integer.parseInt(br.readLine());
+      
+      boolean[] visited=new boolean[vtces];
+      
+      printhphc(src ,src ,graph ,visited ,src+"" ,0);
+ 
+ 
+   public static void printhphc(int src ,int rsc ,ArrayList<Edge>[] graph ,boolean[] visited ,String psf ,int count){
+       
+       if(count==graph.length-1){
+           for(Edge e: graph[src]){
+               if(e.nbr==rsc){
+                System.out.println(psf+"*");        
+                return;
+               }
+           }
+           System.out.println(psf+".");
+           return;
+       }
+       
+       visited[src]=true;
+        
+        for(Edge e:graph[src]){
+            if(!visited[e.nbr]){
+                printhphc(e.nbr ,rsc ,graph ,visited ,psf+e.nbr ,count+1);
+            }
+        }    
+       
+       visited[src]=false;
+   }

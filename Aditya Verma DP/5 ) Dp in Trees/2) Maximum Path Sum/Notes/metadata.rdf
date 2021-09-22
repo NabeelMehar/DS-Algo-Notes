@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ub="http://uniboard.mnemis.com/document">
+    <Description about="http://uniboard.mnemis.com/document/171b7e65-be6b-497d-88f8-4cecc80b6f3b">
+        <dc:title>03-07-2021 12:55 PM</dc:title>
+        <dc:type></dc:type>
+        <dc:date>2021-07-03T07:25:39ZZ</dc:date>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:identifier>http://uniboard.mnemis.com/document/171b7e65-be6b-497d-88f8-4cecc80b6f3b</dc:identifier>
+        <ub:version>4.8.0</ub:version>
+        <ub:size>1280x960</ub:size>
+        <ub:updated-at>2021-07-03T08:16:19ZZ</ub:updated-at>
+        <ub:page-count>1</ub:page-count>
+    </Description>
+</RDF>

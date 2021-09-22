@@ -1,0 +1,33 @@
+ 
+ //https://www.pepcoding.com/resources/online-java-foundation/generic-tree/linearize-generic-tree-official/ojquestion
+ 
+  public static void linearize(Node node){
+    
+    if(node==null){
+        return;
+    }
+    
+    for(Node child:node.children){
+        linearize(child);
+    }
+    
+    
+    while(node.children.size()>1){
+        
+        Node ln=node.children.get(node.children.size()-1);
+        node.children.remove(ln);
+        Node slln=getTail(node.children.get(node.children.size()-1));
+        slln.children.add(ln);
+        
+    }
+    
+  }
+  
+  public static Node getTail(Node node){
+      
+      while(node.children.size()==1){
+          node=node.children.get(0);
+      }
+      
+      return node;
+  }

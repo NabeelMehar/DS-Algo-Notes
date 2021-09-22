@@ -1,0 +1,39 @@
+//https://www.pepcoding.com/resources/online-java-foundation/binary-search-tree/tsp-bst-official/ojquestion 
+  public static boolean find(Node node,int data){
+      
+      if(node==null){
+          return false;
+      }
+      
+      if(data>node.data){
+          return find(node.right ,data);
+      }else if(data<node.data){
+          return find(node.left ,data);
+      }else{
+          return true;
+      }
+      
+  }
+  
+  
+  public static void printTargetSum(Node root ,Node node ,int data){
+      
+      if(node==null){
+          return;
+      }
+      
+      printTargetSum(root ,node.left ,data);
+      
+      int comp=data-node.data;
+      
+      if(comp>node.data){
+          if(find(root ,comp)){
+              System.out.println(node.data+" "+comp);
+          }
+      }
+      
+      
+      printTargetSum(root ,node.right ,data);
+      
+      
+  }

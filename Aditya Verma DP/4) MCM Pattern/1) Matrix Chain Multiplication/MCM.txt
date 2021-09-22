@@ -1,0 +1,41 @@
+//GFG
+
+//https://practice.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1#
+
+class Solution{
+    static int matrixMultiplication(int n, int arr[])
+    {
+        
+        int dp[][]=new int[n+1][n+1];
+        
+        for(int[]d :dp){
+            Arrays.fill(d,-1);
+        }
+        
+        return mcm(arr ,1,n-1 ,dp);
+        
+    }
+    
+    public static int mcm(int[] arr ,int i ,int j ,int dp[][]){
+        
+        if(i>=j){
+            return 0;
+        }
+        
+        if(dp[i][j]!=-1){
+            return dp[i][j];
+        }
+        
+        int mnv=Integer.MAX_VALUE;
+        
+        for(int k=i ; k<j ;k++){
+            
+            int temp=mcm(arr ,i,k ,dp)+mcm(arr ,k+1 ,j ,dp)+(arr[i-1]*arr[k]*arr[j]);
+            
+            mnv=Math.min(mnv ,temp);
+        }
+        
+        return dp[i][j]=mnv;
+    }
+    
+}

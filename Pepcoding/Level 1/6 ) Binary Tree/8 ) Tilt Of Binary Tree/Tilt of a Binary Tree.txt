@@ -1,0 +1,17 @@
+  //https://www.pepcoding.com/resources/online-java-foundation/binary-tree/tilt-of-binary-tree/ojquestion
+  
+  static int t = 0;
+  public static int tilt(Node node){
+    
+    if(node==null){
+        return 0;
+    }
+    
+    int l=tilt(node.left);
+    int r=tilt(node.right);
+    
+    t+=Math.abs(l-r);
+    
+    return l+r+node.data;
+    
+  }

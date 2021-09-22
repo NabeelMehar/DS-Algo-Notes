@@ -1,0 +1,34 @@
+
+//GFG
+
+//https://practice.geeksforgeeks.org/problems/diameter-of-binary-tree/1
+
+class Solution {
+    
+    static int dm;
+    
+    int diameter(Node root) {
+        dm=Integer.MIN_VALUE;
+        calculateDm(root);
+        
+        return dm;
+     
+    }
+    
+    static int calculateDm(Node node) {
+        
+        if(node==null){
+            return 0;
+        }
+        
+        int lmh=calculateDm(node.left);
+        int rmh=calculateDm(node.right);
+        
+        int temp=lmh+rmh+1;
+        dm=Math.max(dm ,temp);
+        
+        
+        return Math.max(lmh ,rmh)+1;
+     
+    }
+}

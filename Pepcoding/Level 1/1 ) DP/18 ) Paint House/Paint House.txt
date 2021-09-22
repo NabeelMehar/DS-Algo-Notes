@@ -1,0 +1,107 @@
+
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/paint-house-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+  public static void main(String[] args) throws Exception {
+
+    Scanner sn = new Scanner(System.in);
+    int n = sn.nextInt();
+
+    long[][] arr = new long[n][3];
+
+    for (int i = 0 ; i < arr.length ; i++) {
+      for (int j = 0 ; j < arr[0].length ; j++) {
+        arr[i][j] = sn.nextInt();
+      }
+    }
+
+    HashMap<String, Long> dp = new HashMap<String, Long>();
+
+    long redCost = (long)arr[n - 1][0] + (long)getMinCost(n - 1, 'r', arr, dp);
+    long blueCost = (long)arr[n - 1][1] + (long)getMinCost(n - 1, 'b', arr, dp);
+    long greenCost = (long)arr[n - 1][2] + (long)getMinCost(n - 1, 'g', arr, dp);
+
+
+    long min = Long.MAX_VALUE;
+
+    if (redCost < min) {
+      min = redCost;
+    }
+    if (blueCost < min) {
+      min = blueCost;
+    }
+    if (greenCost < min) {
+      min = greenCost;
+    }
+
+    System.out.println(min);
+
+  }
+
+
+  public static long getMinCost(int n, char pre, long[][] arr, HashMap<String, Long> dp) {
+    if (n == 0) {
+      return 0;
+    }
+
+    String key =""+n+pre;
+
+    if (dp.containsKey(key)) {
+      return dp.get(key);
+    }
+
+    if (pre == 'r') {
+      long blueCost = (long)arr[n - 1][1] + (long)getMinCost(n - 1, 'b', arr, dp);
+      long greenCost = (long)arr[n - 1][2] + (long)getMinCost(n - 1, 'g', arr, dp);
+
+      long min = Long.MAX_VALUE;
+
+      if (blueCost < min) {
+        min = blueCost;
+      }
+      if (greenCost < min) {
+        min = greenCost;
+      }
+      
+      dp.put(key, min);
+      return min;
+      
+    } else if (pre == 'b') {
+      long redCost = (long)arr[n - 1][0] + (long)getMinCost(n - 1, 'r', arr, dp);
+      long greenCost = (long)arr[n - 1][2] + (long)getMinCost(n - 1, 'g', arr, dp);
+
+      long min = Long.MAX_VALUE;
+
+      if (redCost < min) {
+        min = redCost;
+      }
+      if (greenCost < min) {
+        min = greenCost;
+      }
+      
+      dp.put(key, min);
+      return min;
+    } else {
+      long redCost = (long)arr[n - 1][0] + (long)getMinCost(n - 1, 'r', arr, dp);
+      long blueCost = (long)arr[n - 1][1] + (long)getMinCost(n - 1, 'b', arr, dp);
+
+      long min = Long.MAX_VALUE;
+
+      if (redCost < min) {
+        min = redCost;
+      }
+      if (blueCost < min) {
+        min = blueCost;
+      }
+      dp.put(key, min);
+      return min;
+    }
+
+
+  }
+
+}

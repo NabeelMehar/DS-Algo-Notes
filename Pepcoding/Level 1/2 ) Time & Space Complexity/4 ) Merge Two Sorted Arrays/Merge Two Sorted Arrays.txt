@@ -1,0 +1,39 @@
+ 
+ //https://www.pepcoding.com/resources/online-java-foundation/time-and-space-complexity/merge-two-sorted-arrays-official/ojquestion
+ 
+ public static int[] mergeTwoSortedArrays(int[] a, int[] b){
+    
+    int[] na=new int[a.length+b.length];
+    
+    int i=0;
+    int j=0;
+    
+    int k=0;
+    
+    while(i<a.length && j<b.length){
+        
+        if(a[i]<b[j]){
+            na[k]=a[i];
+            i++;
+        }else{
+            na[k]=b[j];
+            j++;
+        }
+        k++;
+        
+    }
+    
+    while(i<a.length){
+        na[k]=a[i];
+        i++;
+        k++;
+    }
+    
+    while(j<b.length){
+        na[k]=b[j];
+        j++;
+        k++;
+    }
+    
+    return na;
+  }

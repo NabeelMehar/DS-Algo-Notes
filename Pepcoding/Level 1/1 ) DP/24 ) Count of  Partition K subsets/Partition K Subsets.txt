@@ -1,0 +1,45 @@
+
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/partition-into-subsets-official/ojquestion
+
+//GFG Article
+//https://www.geeksforgeeks.org/count-number-of-ways-to-partition-a-set-into-k-subsets/
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+        
+    public static long partitionKSubset(int n, int k ,long[][] dp) {
+
+        if(n==0 || k==0 || k>n){
+            return 0;
+        }
+        
+        if(k==1 || k==n){
+            return 1;
+        }
+        
+        if(dp[n][k]!=-1){
+            return dp[n][k];
+        }
+        
+        return dp[n][k]=k*partitionKSubset(n-1 ,k ,dp)+partitionKSubset(n-1 ,k-1 ,dp);
+    }
+    
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int k = scn.nextInt();
+        
+        long[][] dp=new long[n+1][k+1];
+        
+        for(long[] a : dp){
+            Arrays.fill(a ,-1);
+        }
+        
+        long res = partitionKSubset(n, k ,dp);
+        System.out.println(res);
+    }
+    
+
+}

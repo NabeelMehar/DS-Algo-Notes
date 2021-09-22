@@ -1,0 +1,54 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sn=new Scanner(System.in);
+        int n=sn.nextInt();
+        
+        int[] arr=new int[n];
+        
+        for(int i=0;i<arr.length ;i++){
+            arr[i]=sn.nextInt();
+        }
+        
+        int tar=sn.nextInt();
+        
+        int[][] dp=new int[n+1][tar+1];
+        
+        for(int[] a :dp){
+            Arrays.fill(a ,-1);
+        }
+        
+        System.out.println(noOfCoins(n ,tar ,arr , dp));
+        
+
+    }
+    
+    public static int noOfCoins(int n ,int tar ,int[]arr , int[][] dp){
+        
+        if(tar==0){
+            return 1;
+        }
+        
+        if(n==0){
+            return 0;
+        }
+        
+        if(dp[n][tar]!=-1){
+            return dp[n][tar];
+        }
+        
+        if(arr[n-1] <= tar){
+            return dp[n][tar]=noOfCoins(n ,tar-arr[n-1] ,arr , dp)+noOfCoins(n-1 ,tar ,arr , dp);
+        }else{
+            return dp[n][tar]=noOfCoins(n-1 ,tar ,arr , dp);
+        }
+        
+        
+    }
+    
+    
+}

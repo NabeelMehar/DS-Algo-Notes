@@ -1,0 +1,58 @@
+//Leetcode
+
+class Solution {
+    public boolean canPartition(int[] nums) {
+        
+        int ts=0;
+        
+        for(int i=0;i<nums.length;i++){
+            ts+=nums[i];    
+        }
+        
+           if(ts%2!=0){
+            return false;
+        }
+                
+        if(ts%2!=0){
+            return false;
+        }
+        
+        int[][] dp=new int[nums.length+1][ts+1];
+        
+        return equalSumSub(nums , nums.length , ts/2 ,dp);
+    
+        
+    
+        
+    }
+    
+    public static boolean equalSumSub(int[] nums ,int n ,int ts ,int[][] dp){
+        
+        if(ts<0){
+            return false;
+        }
+        
+        if(ts==0){
+            return true;
+        }
+        
+        if(n==0){
+            return false;
+        }
+        
+        if(dp[n][ts]!=0){
+            return dp[n][ts]==1 ? true : false;
+        }
+        
+        
+        if(equalSumSub(nums ,n-1 ,ts-nums[n-1]  ,dp) || equalSumSub(nums ,n-1 ,ts ,dp)){
+            dp[n][ts]=1;
+            return true;
+        }else{
+            dp[n][ts]=2;
+            return false;
+        }
+    
+    }
+    
+}

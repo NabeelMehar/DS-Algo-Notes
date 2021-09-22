@@ -1,0 +1,40 @@
+
+//LeetCode
+
+//https://leetcode.com/problems/binary-tree-maximum-path-sum/submissions/
+
+class Solution {
+    
+    static int mps;
+    
+    public int maxPathSum(TreeNode root) {
+        mps=Integer.MIN_VALUE;
+        findMps(root);
+        return mps;
+    }
+    
+    public static int findMps(TreeNode node){
+        
+        if(node==null){
+            return 0;
+        }
+        
+        int lms=findMps(node.left);
+        int rms=findMps(node.right);
+        
+        int v1=lms+node.val;
+        int v2=rms+node.val;
+        int v3=node.val;
+        
+            
+        int mv=Math.max(v1 ,Math.max(v2 ,v3));
+        
+        int v4=lms+rms+node.val;
+        
+        mps=Math.max(mps ,Math.max(v4,mv));
+        
+        return mv;
+        
+        
+    }
+}

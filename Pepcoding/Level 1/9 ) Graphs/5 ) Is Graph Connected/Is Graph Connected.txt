@@ -1,0 +1,27 @@
+ 
+      boolean[] visited=new boolean[vtces];
+      
+      findPath(0 ,graph ,visited);
+      
+      for(int i=0;i<graph.length;i++){
+          if(!visited[i]){
+              System.out.println("false");
+              return;
+          }
+      }
+      
+    System.out.println("true");
+    return;
+ 
+ 
+  public static void findPath(int src ,ArrayList<Edge>[] graph ,boolean[] visited){
+       
+       visited[src]=true;
+       
+       for(Edge e :graph[src]){
+           if(!visited[e.nbr]){
+               findPath(e.nbr ,graph ,visited);
+           }
+       }
+       
+   }

@@ -1,0 +1,30 @@
+     int src = Integer.parseInt(br.readLine());
+      int dest = Integer.parseInt(br.readLine());
+      
+      boolean[] visited=new boolean[graph.length];
+      
+      System.out.println(hasPath(src ,dest ,graph ,visited));
+      
+public static boolean hasPath(int src ,int des ,ArrayList<Edge>[] graph ,boolean[] visited){
+        
+        if(src==des){
+            return true;
+        }
+        
+        visited[src]=true;
+        
+        for(Edge e : graph[src]){
+            if(!visited[e.nbr]){
+                
+                if(hasPath(e.nbr ,des ,graph ,visited)){
+                    return true;
+                }
+                
+            }
+        }
+        
+        visited[src]=false;
+        
+        return false;
+        
+    }

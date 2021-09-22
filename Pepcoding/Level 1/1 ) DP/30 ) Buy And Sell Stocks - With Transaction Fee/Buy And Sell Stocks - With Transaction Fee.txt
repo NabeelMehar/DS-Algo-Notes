@@ -1,0 +1,22 @@
+//https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems
+
+class Solution {
+    public int maxProfit(int[] prices, int fee) {
+        
+        long dpik0=0;
+        long dpik1=Integer.MIN_VALUE;
+        
+        for(int price :prices){
+            
+            long dpik0_old=dpik0;
+            
+            dpik0=Math.max(dpik0 ,(dpik1+price)-fee);
+            dpik1=Math.max(dpik1 ,dpik0_old-price);
+            
+        }
+        
+        return (int)dpik0;
+        
+        
+    }
+}

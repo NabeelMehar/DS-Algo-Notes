@@ -1,0 +1,23 @@
+  
+  //https://www.pepcoding.com/resources/online-java-foundation/generic-tree/kth-largest-element-generic-tree-official/ojquestion
+
+  static PriorityQueue<Integer> q;
+
+  public static void kthLargest(Node node, int k){
+    
+    if(q.size()<k){
+        q.add(node.data);
+    }else{
+        
+        if(node.data>q.peek()){
+            q.remove();
+            q.add(node.data);
+        }
+        
+    }
+    
+    for(Node child:node.children){
+        kthLargest(child ,k);
+    }
+
+  }

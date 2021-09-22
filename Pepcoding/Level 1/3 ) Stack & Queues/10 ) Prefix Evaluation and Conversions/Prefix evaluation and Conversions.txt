@@ -1,0 +1,65 @@
+//https://www.pepcoding.com/resources/online-java-foundation/stacks-and-queues/prefix-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+  
+
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String exp = br.readLine();
+    
+    Stack<Integer> vs=new Stack();
+    Stack<String> in=new Stack();
+    Stack<String> post=new Stack();
+    
+    
+    for(int i=exp.length()-1;i>=0;i--){
+        
+        char ch=exp.charAt(i);
+        
+        if(Character.isDigit(ch)){
+            
+            vs.push(ch-'0');
+            in.push(""+ch);
+            post.push(""+ch);
+            
+        }else{
+            
+            String i1=in.pop();
+            String i2=in.pop();
+            in.push('('+i1+ch+i2+')');
+            
+            String p1=post.pop();
+            String p2=post.pop();
+            post.push(p1+p2+ch);
+            
+            int v1=vs.pop();
+            int v2=vs.pop();
+            vs.push(eval(v1 ,v2 ,ch));
+            
+        }
+    }
+    
+    System.out.println(vs.peek());
+    System.out.println(in.peek());
+    System.out.println(post.peek());
+        
+ }
+ 
+ public static int eval(int v1 ,int v2 ,char op){
+     
+     if(op=='+'){
+         return v1+v2;
+     }else if(op=='-'){
+         return v1-v2;
+     }else if(op=='*'){
+         return v1*v2;
+     }else{
+         return v1/v2;
+     }
+     
+ }
+ 
+}

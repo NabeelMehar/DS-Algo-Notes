@@ -1,0 +1,41 @@
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/count-binary-strings-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) throws Exception {
+    
+    Scanner sn=new Scanner(System.in);
+    
+    int n=sn.nextInt();
+    
+    int v1=getBinaryString(n-1 ,0);
+    int v2=getBinaryString(n-1 ,1);
+    
+    System.out.println(v1+v2);
+ }
+ 
+ public static int getBinaryString(int n ,int pre){
+    
+     if(n==0){
+         return 1;
+     }
+     
+     int v1=0;
+     int v2=0;
+     
+     if(pre==0){
+         return getBinaryString(n-1 ,1);
+     }else{
+         v1=getBinaryString(n-1 ,1);
+         v2=getBinaryString(n-1 ,0);
+     }
+     
+     return v1+v2;
+     
+ }
+ 
+
+}

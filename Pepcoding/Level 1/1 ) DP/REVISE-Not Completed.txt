@@ -1,0 +1,18 @@
+
+
+Revise
+
+All Buy Sell Stocks  
+
+9 ) Coin Change Permutation
+12 ) Fractional Knapsack
+16 ) Count a+b+c Subsequences
+23 ) Friends Pairing
+24 ) Count number of ways to partition a set into k subsets
+
+Done - Rivise After Month
+21 ) 2 x 1 tiles
+22 ) m x 1 tiles
+
+Rivise All Time and Space Complexity Section
+

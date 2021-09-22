@@ -1,0 +1,67 @@
+
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/paint-house-many-colors-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sn=new Scanner(System.in);
+        
+        int n=sn.nextInt();
+        int m=sn.nextInt();
+        
+        int[][] arr=new int[n][m];
+        
+        for(int i=0 ;i<arr.length;i++){
+         for(int j=0 ;j<arr[0].length;j++){
+            arr[i][j]=sn.nextInt();
+         }   
+        }
+        
+        int[][] dp=new int[n+1][m+1];
+        
+        for(int[]a :dp){
+            Arrays.fill(a ,-1);
+        }
+
+        int mn=getPrice(n ,-1,arr ,dp);
+        
+        System.out.println(val);
+
+    }
+
+    public static int getPrice(int n ,int pre ,int[][] arr ,int[][] dp){
+        
+        if(n==0){
+            return 0;
+        }
+        
+        if(pre!=-1 && dp[n][pre]!=-1 ){
+            return dp[n][pre];
+        }
+        
+        int mn=Integer.MAX_VALUE;
+        
+        for(int i=0;i<arr[0].length;i++){
+            if(i!=pre){
+                int val=arr[n-1][i]+getPrice(n-1 ,i ,arr ,dp);
+                mn=Math.min(mn,val);
+            }
+        }
+        
+        if(pre!=-1){
+        return dp[n][pre]=mn;
+        }else{
+            return mn;
+        }
+        
+        
+    }
+    
+    
+    
+    
+}

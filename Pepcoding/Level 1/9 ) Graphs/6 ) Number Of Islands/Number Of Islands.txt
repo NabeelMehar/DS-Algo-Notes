@@ -1,0 +1,32 @@
+  //https://www.pepcoding.com/resources/online-java-foundation/graphs/count-islands-official/ojquestion
+  
+    boolean[][] visited=new boolean[m][n];
+      
+      int count=0;
+
+      for(int i=0;i<m;i++){
+      for(int j=0;j<n;j++){
+          if(!visited[i][j] && arr[i][j]!=1){
+              count++;
+              findIslands(i ,j ,arr ,visited);
+          }
+      }   
+      }
+      
+      System.out.println(count);
+
+public static void findIslands(int r ,int c ,int[][] arr ,boolean[][] visited){
+       
+       if(r<0 || r>=arr.length || c<0 || c>=arr[0].length || arr[r][c]==1 || visited[r][c]){
+           return;
+       }
+       
+       visited[r][c]=true;
+       
+       findIslands(r+1 ,c ,arr ,visited);
+       findIslands(r ,c+1 ,arr ,visited);
+       findIslands(r-1 ,c ,arr ,visited);
+       findIslands(r ,c-1 ,arr ,visited);
+       
+       
+   }

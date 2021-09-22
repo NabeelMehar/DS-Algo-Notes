@@ -1,0 +1,78 @@
+   
+   //https://www.pepcoding.com/resources/online-java-foundation/stacks-and-queues/two-stacks-official/ojquestion
+   
+   public TwoStack(int cap) {
+        
+      data=new int[cap];
+      tos1=-1;
+      tos2=cap;
+    }
+
+    int size1() {
+      return tos1+1;
+    }
+
+    int size2() {
+      return tos2+1;
+    }
+
+    void push1(int val) {
+      if(tos1+1==tos2){
+          System.out.println("Stack overflow");
+      }else{    
+          tos1++;
+          data[tos1]=val;
+      }
+    }
+
+    void push2(int val) {
+      if(tos1+1==tos2){
+          System.out.println("Stack overflow");
+      }else{    
+          tos2--;
+          data[tos2]=val;
+      }
+    }
+
+    int pop1() {
+      if(tos1==-1){
+          System.out.println("Stack underflow");
+          return -1;
+      }else{    
+          int val=data[tos1];
+          tos1--;
+          return val;
+      }
+    }
+
+    int pop2() {
+      if(tos2==data.length){
+          System.out.println("Stack underflow");
+          return -1;
+      }else{    
+          int val=data[tos2];
+          tos2++;
+          return val;
+      }
+    }
+
+    int top1() {
+      if(tos1==-1){
+          System.out.println("Stack underflow");
+          return -1;
+      }else{    
+          int val=data[tos1];
+          return val;
+      }
+    }
+
+    int top2() {
+      if(tos2==data.length){
+          System.out.println("Stack underflow");
+          return -1;
+      }else{    
+          int val=data[tos2];
+          return val;
+      }
+    }
+  }

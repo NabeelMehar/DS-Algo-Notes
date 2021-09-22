@@ -1,0 +1,67 @@
+//Leetcode
+
+//https://leetcode.com/problems/super-egg-drop/submissions/
+
+
+class Solution {
+    public int superEggDrop(int k, int n) {
+        
+        
+        int[][] dp= new int[k+1][n+1];
+        
+        for(int[] arr :dp){
+            Arrays.fill(arr ,-1);
+        }
+        
+        return eggDrop(k ,n ,dp);
+        
+    }
+    
+    
+    public int eggDrop(int e, int f ,int[][] dp) {
+        
+        if(f==0 || f==1){
+            return f;
+        }
+        
+        if(e==1){
+            return f;
+        }
+                
+        if(dp[e][f]!=-1){
+            return dp[e][f];
+        }
+        
+        int ma=Integer.MAX_VALUE;
+        
+        int left=1;
+        int right=f;
+        
+        while(left<=right){
+            
+            int k=(left+right)/2;
+            
+            int breaks=eggDrop(e-1 ,k-1 ,dp);
+            int notbreaks=eggDrop(e ,f-k ,dp);
+            
+            int temp=1+Math.max(breaks,notbreaks);
+            
+            ma=Math.min(ma ,temp);
+            
+            if(breaks==notbreaks){
+                break;
+            }else if(breaks < notbreaks){
+                left=k+1;
+            }else{
+                right=k-1;
+            }
+            
+            
+        }
+        
+        return dp[e][f]=ma;
+    }
+    
+    
+    
+}

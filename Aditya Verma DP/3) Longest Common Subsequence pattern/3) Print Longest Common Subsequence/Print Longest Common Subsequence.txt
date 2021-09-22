@@ -1,0 +1,53 @@
+//GFG
+
+//https://www.geeksforgeeks.org/printing-longest-common-subsequence/
+
+
+import java.util.*;
+
+class GFG {
+	public static void main (String[] args) {
+		System.out.println("GfG!");
+		
+		Scanner sn=new Scanner(System.in);
+		
+		String s1=sn.nextLine();
+		String s2=sn.nextLine();
+		
+		
+		int l1=s1.length();
+        int l2=s2.length();
+		
+		String[][] dp=new String[l1+1][l2+1];
+
+		
+		System.out.println(findsubstr(s1 ,s2 ,l1 ,l2 ,dp));
+
+	}
+	
+	 public static String findsubstr(String s1 ,String s2 ,int l1 ,int l2 ,String[][] dp){
+        
+        if(l1==0 || l2==0){
+            return "";
+        }
+        
+        if(dp[l1][l2]!=null){
+            return dp[l1][l2];
+        }
+        
+        if(s1.charAt(l1-1)==s2.charAt(l2-1)){
+            return findsubstr(s1 ,s2 ,l1-1 ,l2-1 ,dp)+s1.charAt(l1-1);
+        }else{
+            String val1=findsubstr(s1 ,s2 ,l1-1 ,l2 ,dp);
+            String val2=findsubstr(s1 ,s2 ,l1 ,l2-1 ,dp);
+            
+            if( val1.length() > val2.length()){
+                return dp[l1][l2]=val1;
+            }else{
+                return dp[l1][l2]=val2;
+            }
+            
+        }
+        
+    }
+}

@@ -1,0 +1,35 @@
+
+//gfg
+
+//https://practice.geeksforgeeks.org/problems/count-subsequences-of-type-ai-bj-ck4425/1
+
+class Solution
+{
+    public int fun(String str)
+    {
+        
+        long ca=0;
+        long cb=0;
+        long cc=0;
+        
+        int ma=1000000007;
+        
+        for(int i=0 ;i<str.length() ;i++){
+            
+            if(str.charAt(i)=='a'){
+                
+                ca=(1+2*ca) % ma;
+                
+            }else if(str.charAt(i)=='b'){
+                
+                cb=(ca+2*cb) % ma ;
+                
+            }else{
+                
+                cc=(cb+2*cc) % ma  ;
+            }
+        }
+        
+         return (int)cc;
+    }
+}

@@ -1,0 +1,99 @@
+//https://www.pepcoding.com/resources/online-java-foundation/hashmap-and-heap/priority-queue-using-heap-official/ojquestion
+
+ public static class PriorityQueue {
+    ArrayList<Integer> data;
+
+    public PriorityQueue() {
+      data = new ArrayList<>();
+    }
+
+    public void add(int val) {
+      
+      if(size()==0){
+          data.add(val);
+      }else{
+          
+          data.add(val);
+          upheapify(data.size()-1);
+          
+      }
+    }
+    
+    public void upheapify(int ci){
+        
+        if(ci==0){
+            return;
+        }
+        
+        int pi=(ci-1)/2;
+        
+        if(data.get(ci)<data.get(pi)){
+            
+            int temp=data.get(pi);
+            data.set(pi ,data.get(ci));
+            data.set(ci ,temp);
+            
+            upheapify(pi);
+        }
+        
+    }
+
+    public int remove() {
+      
+      if(size()==0){
+          System.out.println("Underflow");
+          return -1;
+      }else if(size()==1){
+          return data.remove(0);
+      }else{
+          
+          int val=data.get(0);
+          
+          data.set(0 ,data.get(data.size()-1));
+          data.remove(data.size()-1);
+          
+          downheapify(0);
+          
+          return val;
+
+      }
+    }
+    
+    public void downheapify(int ci){
+        
+        int mini=ci;
+        
+        int lc=(ci*2)+1;
+        if(lc<size() && data.get(lc)<data.get(mini)){
+            mini=lc;
+        }
+        
+        int rc=(ci*2)+2;
+        if(rc<size() && data.get(rc)<data.get(mini)){
+            mini=rc;
+        }
+        
+        if(mini!=ci){
+            
+            int temp=data.get(mini);
+            data.set(mini ,data.get(ci));
+            data.set(ci ,temp);
+            
+            downheapify(ci);
+        }
+        
+    }
+
+    public int peek() {
+      if(size()==0){
+          System.out.println("Underflow");
+          return -1;
+      }else{
+       return data.get(0);   
+      }
+    }
+
+    public int size() {
+      return data.size();
+    }
+  }

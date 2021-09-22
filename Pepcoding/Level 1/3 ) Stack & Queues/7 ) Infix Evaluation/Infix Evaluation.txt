@@ -1,0 +1,112 @@
+
+//https://www.pepcoding.com/resources/online-java-foundation/stacks-and-queues/infix-evaluation-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+  
+
+public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String exp = br.readLine();
+    
+        
+    Stack<Character> operators=new Stack();
+    Stack<Integer> oprands=new Stack();
+    
+    
+    for(int i=0;i<exp.length();i++){
+        
+        char ch=exp.charAt(i);
+        
+        
+        if(ch==')'){
+            
+            while(operators.peek()!='('){
+                
+                int op2=oprands.pop();
+                int op1=oprands.pop();
+                
+                char op=operators.pop();
+                
+                int eval=evaluate(op1 ,op2 ,op);
+                
+                oprands.push(eval);
+                
+            }
+            
+            operators.pop();
+            
+        }else if(ch=='('){
+            
+            operators.push(ch);
+            
+        }else if(ch=='-' || ch=='+' || ch=='*' || ch=='/' ){
+            
+            if(!operators.isEmpty() && operators.peek()!='(' && getPrecedence(operators.peek())>=getPrecedence(ch)){
+                
+                int op2=oprands.pop();
+                int op1=oprands.pop();
+                
+                char op=operators.pop();
+                
+                int eval=evaluate(op1 ,op2 ,op);
+                
+                oprands.push(eval);
+                operators.push(ch);
+
+            }else{
+                operators.push(ch);
+            }
+            
+        }else if(ch!=' '){
+            
+            oprands.push(Integer.parseInt(""+ch));
+        }
+        
+        
+    }
+    
+    while(!operators.isEmpty()){
+                
+                int op2=oprands.pop();
+                int op1=oprands.pop();
+                
+                char op=operators.pop();
+                
+                int eval=evaluate(op1 ,op2 ,op);
+                
+                oprands.push(eval);
+                
+    }
+    
+    System.out.println(oprands.peek());
+    
+ }
+ 
+  public static int getPrecedence(char ch){ 
+        
+        if(ch=='+' || ch=='-'){
+            return 1;
+        }else{
+            return 2;
+        }
+        
+  }
+ 
+  public static int evaluate(int op1 ,int op2 ,char op){
+        
+        if(op=='+'){
+            return op1+op2;
+        }else if(op=='-'){
+            return op1-op2;
+        }else if(op=='*'){
+            return op1*op2;
+        }else{
+            return op1/op2;
+        }
+        
+    }
+
+}

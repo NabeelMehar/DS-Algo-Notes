@@ -1,0 +1,62 @@
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/target-sum-subsets-dp-official/ojquestion#
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sn=new Scanner(System.in);
+        
+        int n=sn.nextInt();
+        
+        int[] arr=new int[n];
+        
+        for(int i=0 ;i<arr.length ;i++){
+            arr[i]=sn.nextInt();
+        }
+        
+        int tar=sn.nextInt();
+        
+        int[][] dp=new int[n+1][tar+1];
+        
+        for(int[] a :dp){
+            Arrays.fill(a ,-1);
+        }
+        
+        System.out.println(targetSum(n ,tar ,arr ,dp));
+    }
+    
+    public static boolean targetSum(int n ,int tar ,int[] arr ,int[][] dp){
+        
+        if(tar==0){
+            return true;
+        }
+        
+        if(n==0){
+            return false;
+        }
+        
+        if(dp[n][tar]!=-1){
+            return dp[n][tar]==1?true:false;
+        }
+        
+        if(arr[n-1] <= tar){
+            if(targetSum(n-1 ,tar-arr[n-1] ,arr ,dp) || targetSum(n-1 ,tar ,arr ,dp)){
+                dp[n][tar]=1;
+              return true;
+            }else{
+                dp[n][tar]=0;
+                return false;
+            }
+        }else{
+            
+            boolean val= targetSum(n-1 ,tar ,arr ,dp);
+            dp[n][tar]=val?1:0;
+            return val;
+        }
+        
+    }
+    
+}

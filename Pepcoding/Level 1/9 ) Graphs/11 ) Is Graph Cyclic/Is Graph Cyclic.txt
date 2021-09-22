@@ -1,0 +1,36 @@
+ /https://www.pepcoding.com/resources/online-java-foundation/graphs/is-cyclic-official/ojquestion
+ 
+ boolean[] visited=new boolean[vtces];
+      
+      Queue<Integer> q=new ArrayDeque();
+      
+      for(int i=0;i<graph.length;i++){
+          
+          if(!visited[i]){
+              
+             q.add(i);    
+             while(q.size()>0){
+              
+              int cs=q.remove();
+              
+              if(!visited[cs]){
+                  
+                  visited[cs]=true;
+                  
+                  for(Edge e:graph[cs]){
+                      if(!visited[e.nbr]){
+                          q.add(e.nbr);
+                      }
+                  }
+                  
+              }else{
+                  System.out.println("true");
+                  return;
+              }
+              
+        }
+        
+          }
+      }
+    System.out.println("false");
+    

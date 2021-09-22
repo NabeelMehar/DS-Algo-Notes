@@ -1,0 +1,15 @@
+ //https://www.pepcoding.com/resources/online-java-foundation/binary-tree/transform-to-normal-from-left-cloned-tree-official/ojquestion
+ 
+  public static Node transBackFromLeftClonedTree(Node node){
+    
+    if(node==null){
+        return null;
+    }
+    
+    node.left=node.left.left;
+    
+    transBackFromLeftClonedTree(node.left);
+    transBackFromLeftClonedTree(node.right);
+    
+    return node;
+  }

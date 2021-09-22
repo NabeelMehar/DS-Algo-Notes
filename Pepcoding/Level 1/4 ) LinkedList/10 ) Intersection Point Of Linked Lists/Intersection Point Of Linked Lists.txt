@@ -1,0 +1,35 @@
+
+ //https://www.pepcoding.com/resources/online-java-foundation/linked-lists/intersection-of-linked-lists-official/ojquestion  
+   
+    public static int findIntersectionHelper(Node one,int so, Node two ,int st){
+        
+        if(one==null){
+            return Integer.MIN_VALUE;    
+        }
+        
+        int is=0;
+        
+        if(so>st){
+            return findIntersectionHelper(one.next ,so-1 ,two ,st);
+        }else{
+            if(one.data==two.data){
+                return one.data;    
+            }else{
+                return findIntersectionHelper(one.next ,so-1 ,two.next ,st-1);
+            }
+            
+        }
+    }
+
+    public static int findIntersection(LinkedList one, LinkedList two){
+     
+     int is=0;
+     
+     if(one.size>two.size){
+         is=findIntersectionHelper(one.head ,one.size ,two.head ,two.size);
+     }else{
+         is=findIntersectionHelper(two.head ,two.size ,one.head ,one.size);
+     }
+     
+      return is;
+    }

@@ -1,0 +1,31 @@
+  
+  //https://www.pepcoding.com/resources/online-java-foundation/time-and-space-complexity/count-sort-official/ojquestion
+  
+  public static void countSort(int[] arr, int min, int max) {
+        
+        int farrSize=(max-min)+1;
+        
+        int[] freqArr=new int[farrSize];
+        
+        for(int i=0;i<arr.length;i++){
+            freqArr[arr[i]-min]++;
+        }
+        
+        int[] preSumArr=new int[freqArr.length];
+        
+        preSumArr[0]=freqArr[0]-1;
+        
+        for(int i=1;i<freqArr.length;i++){
+            preSumArr[i]=preSumArr[i-1]+freqArr[i];
+        }
+        
+        int[] ansArr=new int[arr.length];
+        
+        for(int i=arr.length-1;i>=0;i--){
+            ansArr[preSumArr[arr[i]-min]]=arr[i];
+            preSumArr[arr[i]-min]--;
+        }
+        
+        print(ansArr);
+   
+  }

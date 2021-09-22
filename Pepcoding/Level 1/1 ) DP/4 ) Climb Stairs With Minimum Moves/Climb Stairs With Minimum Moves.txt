@@ -1,0 +1,58 @@
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/climb-stairs-with-minimum-moves-official/ojquestion#
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner sn=new Scanner(System.in);
+        
+        int n=sn.nextInt();
+        
+        int[] arr=new int[n];
+        
+        for(int i=0;i<arr.length ;i++){
+            arr[i]=sn.nextInt();
+        }
+        
+        int[] dp=new int[n+1];
+        
+        Arrays.fill(dp ,-1);
+        
+        int p=findPaths(n ,0 ,arr ,dp);
+        
+        if(p==Integer.MAX_VALUE-1){
+            System.out.println("null");
+        }else{
+            System.out.println(p);
+        }
+    }
+    
+    public static int findPaths(int n ,int i ,int[] arr ,int[] dp){
+        
+        if(n==i){
+            return 0;
+        }
+        
+        if(dp[i]!=-1){
+            return dp[i];
+        }
+        
+        int minMove=Integer.MAX_VALUE-1;
+        
+        
+        if(arr[i]!=0){
+            
+            for(int k=1 ;k<=arr[i] ; k++){
+                if(i+k<=n){
+                int mv=findPaths(n ,k+i ,arr ,dp)+1;
+                minMove=Math.min(minMove ,mv);
+                }
+            }
+            
+        }
+        return dp[i]=minMove;
+    }
+
+}

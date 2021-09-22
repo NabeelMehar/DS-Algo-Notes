@@ -1,0 +1,22 @@
+ //https://www.pepcoding.com/resources/online-java-foundation/generic-tree/node-with-maximum-subtree-sum-official/ojquestion
+ 
+  static int maxSum;
+  static Node maxNode;
+  
+  public static int getMaxSubTree(Node node){
+      
+      int sum=0;
+      
+      for(Node child:node.children){
+          sum+=getMaxSubTree(child);
+      }
+
+      sum+=node.data;
+     
+      if(sum>maxSum){
+        maxSum=sum;
+        maxNode=node;
+      }
+      return sum;
+      
+  }

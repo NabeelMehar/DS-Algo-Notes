@@ -1,0 +1,32 @@
+ 
+ //https://www.pepcoding.com/resources/online-java-foundation/stacks-and-queues/next-greater-element-official/ojquestion
+ 
+ public static int[] solve(int[] arr){
+    
+    Stack<Integer> st=new Stack();
+    
+    st.push(arr[arr.length-1]);
+    
+    arr[arr.length-1]=-1;
+    
+    
+    for(int i=arr.length-2;i>=0;i--){
+        
+        int ci=arr[i];
+        
+        while(!st.isEmpty() && st.peek()<ci){
+            st.pop();
+        }
+        
+        if(st.isEmpty()){
+           arr[i]=-1;
+        }else{
+            arr[i]=st.peek();
+        }
+        
+        st.push(ci);
+        
+    }
+   
+   return arr;
+ }

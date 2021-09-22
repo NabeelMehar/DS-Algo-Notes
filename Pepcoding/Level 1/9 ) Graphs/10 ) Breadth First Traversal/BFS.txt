@@ -1,0 +1,29 @@
+//https://www.pepcoding.com/resources/online-java-foundation/graphs/bfs-graph-official/ojquestion      
+      
+      int src = Integer.parseInt(br.readLine());
+      
+      boolean[] visited=new boolean[vtces];
+      
+      Queue<Pair> q=new ArrayDeque();
+      q.add(new Pair(src ,""+src));
+      
+      while(q.size()>0){
+          
+          Pair cp=q.remove();
+
+          
+          if(!visited[cp.src]){
+              
+          System.out.println(cp.src+"@"+cp.psf);
+          visited[cp.src]=true;  
+                      
+          
+          for(Edge e : graph[cp.src]){
+              if(!visited[e.nbr]){
+                  q.add(new Pair(e.nbr ,""+cp.psf+e.nbr));
+              }
+          }
+          
+          }
+
+      }

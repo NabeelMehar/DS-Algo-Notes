@@ -1,0 +1,37 @@
+//GFG
+
+//https://practice.geeksforgeeks.org/problems/coin-change2448/1#
+
+class Solution
+{
+    public long count(int arr[], int m, int n) 
+    {
+     
+     long[][] dp=new long[m+1][n+1];
+     return coinChange(arr ,m ,n ,dp);   
+        
+        
+    } 
+    
+    public static long coinChange(int[] arr ,int n ,int val ,long[][] dp){
+        
+        if(val==0){
+            return 1;
+        }
+        
+        if(n==0){
+            return 0;
+        }
+        
+        if(dp[n][val]!=0){
+            return dp[n][val];
+        }
+        
+        if(arr[n-1] <= val){
+            return dp[n][val]=coinChange(arr ,n ,val-arr[n-1] ,dp)+coinChange(arr ,n-1 ,val ,dp);
+        }else{
+            return dp[n][val]=coinChange(arr ,n-1 ,val ,dp);
+        }
+        
+    }
+}

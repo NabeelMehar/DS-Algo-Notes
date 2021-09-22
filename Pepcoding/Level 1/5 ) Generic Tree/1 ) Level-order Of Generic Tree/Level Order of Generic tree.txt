@@ -1,0 +1,21 @@
+ //https://www.pepcoding.com/resources/online-java-foundation/generic-tree/level-order-generic-tree-official/ojquestion
+ 
+  public static void levelOrder(Node node){
+    
+    Queue<Node> mq=new ArrayDeque();
+    
+    mq.add(node);
+    
+    while(mq.size()>0){
+        
+        Node cn=mq.remove();
+        System.out.print(cn.data+" ");
+        
+        for(Node child:cn.children){
+            mq.add(child);
+        }
+        
+    }
+    
+    System.out.print(".");
+  }

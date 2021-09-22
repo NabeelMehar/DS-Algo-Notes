@@ -1,0 +1,43 @@
+//https://www.pepcoding.com/resources/online-java-foundation/hashmap-and-heap/merge-k-sorted-lists-official/ojquestion
+
+    static class  Pair implements Comparable<Pair>{
+        
+        int val;
+        int ci;
+        int ai;
+        
+        public Pair(int val ,int ci ,int ai){
+            this.val=val;
+            this.ai=ai;
+            this.ci=ci;
+        }
+        
+        public int compareTo(Pair ot){
+            return this.val-ot.val;
+        }
+    }
+    
+    
+   public static ArrayList<Integer> mergeKSortedLists(ArrayList<ArrayList<Integer>> lists){
+      ArrayList<Integer> rv = new ArrayList<>();
+      PriorityQueue<Pair> q=new PriorityQueue();
+      
+      for(int i=0;i<lists.size();i++){
+          q.add(new Pair(lists.get(i).get(0),0,i));
+      }
+      
+      while(q.size()>0){
+          
+          Pair cp=q.remove();
+          rv.add(cp.val);
+          
+          if(cp.ci<lists.get(cp.ai).size()-1){
+              cp.ci++;
+              cp.val=lists.get(cp.ai).get(cp.ci);
+              q.add(cp);
+              
+          }
+      }
+      
+      return rv;
+   }

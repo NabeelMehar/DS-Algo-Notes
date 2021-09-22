@@ -1,0 +1,61 @@
+
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/paint-fence-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sn=new Scanner(System.in);
+        
+        int n=sn.nextInt();
+        int k=sn.nextInt();
+        
+        HashMap<String ,Integer> dp=new HashMap<String ,Integer>();
+        
+        int ways=getWays(n ,0 ,Integer.MAX_VALUE ,k , dp);
+        
+        System.out.println(ways);
+
+    }
+    
+    
+    public static int getWays(int n ,int pre ,int ck ,int k ,HashMap<String ,Integer> dp){
+        
+        if(n==0){
+            return 1;
+        }
+        
+        String key=""+n+pre+ck;
+        
+        if(dp.containsKey(key)){
+            return dp.get(key);
+        }
+        
+        int totalWays=0;
+        
+        for(int i=0 ;i<k ;i++){
+            
+            int cw=0;
+            
+            if(i==ck && pre==0){
+                
+                cw=getWays(n-1 ,1 ,i ,k ,dp);
+                
+            }else if(i==ck && pre==1){
+                
+                cw=0;
+                
+            }else{
+                cw=getWays(n-1 ,0 ,i ,k ,dp);
+            }
+            totalWays+=cw;
+        }
+        
+        dp.put(key ,totalWays);
+        return totalWays;
+        
+    }
+}

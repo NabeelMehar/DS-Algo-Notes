@@ -1,0 +1,58 @@
+ //https://www.pepcoding.com/resources/online-java-foundation/graphs/mutilsovler-graph-official/ojquestion  
+   static String spath;
+   static Integer spathwt = Integer.MAX_VALUE;
+   static String lpath;
+   static Integer lpathwt = Integer.MIN_VALUE;
+   static String cpath;
+   static Integer cpathwt = Integer.MAX_VALUE;
+   static String fpath;
+   static Integer fpathwt = Integer.MIN_VALUE;
+   static PriorityQueue<Pair> pq = new PriorityQueue<>();
+   public static void multisolver(ArrayList<Edge>[] graph, int src, int dest, boolean[] visited, int criteria, int k, String psf, int wsf) {
+       
+       if(src==dest){
+        
+        if(wsf<spathwt){
+            spath=psf;
+            spathwt=wsf;
+        }
+        
+        if(wsf>lpathwt){
+            lpath=psf;
+            lpathwt=wsf;
+        }
+        
+        if(wsf>criteria){
+            if(wsf<cpathwt){
+                cpath=psf;
+                cpathwt=wsf;
+            }
+        }
+        
+        if(wsf<criteria){
+            if(wsf>fpathwt){
+                fpath=psf;
+                fpathwt=wsf;
+            }
+        }
+        
+        if(pq.size()<k){
+            pq.add(new Pair(wsf ,psf));
+        }else if(pq.peek().wsf<wsf){
+            pq.remove();
+            pq.add(new Pair(wsf ,psf));
+        }
+        
+        return;   
+       }
+       
+       visited[src]=true;
+       for(Edge e :graph[src]){
+           
+           if(!visited[e.nbr]){
+               multisolver(graph ,e.nbr ,dest ,visited ,criteria ,k ,psf+e.nbr ,wsf+e.wt);
+           }
+           
+       }
+      visited[src]=false;
+   }

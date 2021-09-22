@@ -1,0 +1,56 @@
+ //https://www.pepcoding.com/resources/online-java-foundation/binary-tree/print-nodes-k-away-binary-tree-official/ojquestion
+ 
+    public static ArrayList<Node> nodeToRoot(Node node ,int data){
+      
+      if(node==null){
+              return new ArrayList();
+      }
+      
+      if(node.data==data){
+          ArrayList<Node> al=new ArrayList();
+          al.add(node);
+          return al;
+      }
+      
+      ArrayList<Node> n1=nodeToRoot(node.left,data);
+      
+      if(n1.size()>0){
+          n1.add(node);
+          return n1;
+      }
+      
+      ArrayList<Node> n2=nodeToRoot(node.right ,data);
+      
+     if(n2.size()>0){
+          n2.add(node);
+          return n2;
+      }
+      
+      return new ArrayList();
+      
+  }
+  
+  public static void printKLevelsDown(Node node ,int k ,Node block){
+      
+      if(node==null ||  k<0 || node==block){
+          return;
+      }
+      
+      if(k==0){
+          System.out.println(node.data);
+      }
+      
+      printKLevelsDown(node.left ,k-1 ,block);
+      printKLevelsDown(node.right ,k-1 ,block);
+      
+      
+  }
+
+  public static void printKNodesFar(Node node, int data, int k) {
+      
+      ArrayList<Node> al=nodeToRoot(node,data);
+      
+      for(int i=0;i<al.size();i++){
+          printKLevelsDown(al.get(i) ,k-i,i==0?null:al.get(i-1));
+      }
+  }

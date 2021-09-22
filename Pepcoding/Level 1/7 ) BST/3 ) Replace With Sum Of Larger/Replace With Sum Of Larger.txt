@@ -1,0 +1,16 @@
+ /https://www.pepcoding.com/resources/online-java-foundation/binary-search-tree/replace-with-sum-of-larger-official/ojquestion
+ 
+  static int sum = 0;
+  public static void rwsol(Node node){
+    
+    if(node==null){
+        return;
+    }
+    
+    rwsol(node.right);
+    int temp=sum;
+    sum+=node.data;
+    node.data=temp;
+    rwsol(node.left);
+    
+  }

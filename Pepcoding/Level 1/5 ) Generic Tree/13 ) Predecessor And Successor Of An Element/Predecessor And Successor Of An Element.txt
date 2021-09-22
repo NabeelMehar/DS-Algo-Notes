@@ -1,0 +1,31 @@
+//https://www.pepcoding.com/resources/online-java-foundation/generic-tree/pred-succ-generic-tree-official/ojquestion
+
+  static Node predecessor;
+  static Node successor;
+  
+  static boolean foundpre;
+  static boolean foundsuc;
+  
+  public static void predecessorAndSuccessor(Node node, int data) {
+    
+    if(!foundpre && !foundsuc){
+        
+        if(node.data==data){
+            foundpre=true;
+        }else{
+            predecessor=node;
+        }
+        
+    }else if(!foundsuc){
+        successor=node;
+        foundsuc=true;
+        return;
+        
+    }
+    
+    for(Node child:node.children){
+        predecessorAndSuccessor(child ,data);
+    }
+    
+    
+  }

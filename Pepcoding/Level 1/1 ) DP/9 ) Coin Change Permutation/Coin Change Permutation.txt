@@ -1,0 +1,53 @@
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/coin-change-permutations-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sn=new Scanner(System.in);
+        int n=sn.nextInt();
+        
+        int[] arr=new int[n];
+        
+        for(int i=0;i<arr.length;i++){
+            arr[i]=sn.nextInt();
+        }
+        
+        int tar=sn.nextInt();
+        
+        int[] dp=new int[tar+1];
+        Arrays.fill(dp ,-1);
+        System.out.println(getPermutations(tar ,arr ,dp));
+
+    }
+    
+    
+    public static int getPermutations(int tar ,int[] arr ,int[] dp){
+        
+        if(tar==0){
+            return 1;
+        }
+        
+        if(dp[tar]!=-1){
+            return dp[tar];
+        }
+    
+        int ans=0;
+        
+        for(int i=0;i<arr.length;i++){
+            
+            if(arr[i] > tar){
+                continue;
+            }
+            
+            ans+=getPermutations(tar-arr[i] ,arr ,dp);
+        }
+        
+        return dp[tar]=ans;
+    }
+    
+    
+}

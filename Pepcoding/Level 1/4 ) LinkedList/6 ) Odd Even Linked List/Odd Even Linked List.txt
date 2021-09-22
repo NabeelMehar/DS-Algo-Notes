@@ -1,0 +1,31 @@
+   
+   //https://www.pepcoding.com/resources/online-java-foundation/linked-lists/odd-even-linked-list-official/ojquestion
+   
+    public void oddEven(){
+      
+      LinkedList l1=new LinkedList();
+      LinkedList l2=new LinkedList();
+      
+      Node temp=head;
+      
+      while(temp!=null){
+          if(temp.data%2==0){
+              l1.addLast(temp.data);
+          }else{
+              l2.addLast(temp.data);
+          }
+          temp=temp.next;
+      }
+      
+      if(l1.size()==0){
+          head=l2.head;
+          tail=l2.tail;
+      }else if(l2.size()==0){
+          head=l1.head;
+          tail=l1.tail;
+      }else{
+          head=l2.head;
+          l2.tail.next=l1.head;
+          tail=l1.tail;
+      } 
+    }

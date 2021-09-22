@@ -1,0 +1,35 @@
+ //https://www.pepcoding.com/resources/online-java-foundation/generic-tree/levelorder-linewise-zigzag-official/ojquestion
+ 
+ public static void levelOrderLinewiseZZ(Node node){
+    
+    Queue<Node> mq=new ArrayDeque();
+    Stack<Node> st=new Stack();
+    
+    boolean isRight=true;
+    mq.add(node);
+    
+    while(mq.size()>0 || st.size()>0){
+        
+        Node cn=mq.remove();
+        System.out.print(cn.data+" ");
+        
+        if(isRight){
+            for(Node child:cn.children){
+                st.push(child);
+            }
+        }else{
+            for(int i=cn.children.size()-1;i>=0;i--){
+                st.push(cn.children.get(i));
+            }
+        }
+        
+        if(mq.size()==0){
+            System.out.println();
+            isRight=!isRight;
+            while(!st.isEmpty()){
+                mq.add(st.pop());
+            }
+        }
+    }
+    
+  }

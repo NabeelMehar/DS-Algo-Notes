@@ -1,0 +1,31 @@
+//https://www.pepcoding.com/resources/online-java-foundation/linked-lists/mergesort-linkedlist-official/ojquestion    
+    
+    public static Node getMid(Node head ,Node tail) {
+        
+      Node f = head;
+      Node s = head;
+
+      while (f != tail && f.next!= tail) {
+        f = f.next.next;
+        s = s.next;
+      }
+      return s;
+    }
+
+    public static LinkedList mergeSort(Node head, Node tail){
+        
+    if(head==tail){
+        LinkedList l=new LinkedList();
+        l.addLast(head.data);
+        return l;
+    }
+        
+      Node mid = getMid(head ,tail);
+
+      
+      LinkedList l1=mergeSort(head ,mid);
+      LinkedList l2=mergeSort(mid.next ,tail);
+      
+      
+      return mergeTwoSortedLists(l1 , l2);
+    }

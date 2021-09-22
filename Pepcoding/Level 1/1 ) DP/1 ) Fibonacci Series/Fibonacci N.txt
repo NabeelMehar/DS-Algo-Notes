@@ -1,0 +1,32 @@
+
+//GFG
+
+//https://practice.geeksforgeeks.org/problems/nth-fibonacci-number1335/1#
+
+class Solution {
+    static long nthFibonacci(long n){
+        
+        int ds=(int)n+1;
+        // long[] dp=new long[ds];
+        
+        HashMap<Long ,Long> dp=new HashMap();
+        
+        
+        return findFib(n ,dp);
+    }
+    
+    static long findFib(long n ,HashMap<Long ,Long> dp){
+        if(n==0 || n==1){
+            return n;
+        }
+        
+        if(dp.containsKey(n)){
+            return dp.get(n);
+        }
+        long val=findFib(n-1 ,dp)+findFib(n-2 ,dp);
+        dp.put(n ,val);
+        return val%1000000007;
+        
+    }
+    
+}

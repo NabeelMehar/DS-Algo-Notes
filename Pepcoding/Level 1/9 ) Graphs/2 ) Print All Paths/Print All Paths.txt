@@ -1,0 +1,25 @@
+    int src = Integer.parseInt(br.readLine());
+    int dest = Integer.parseInt(br.readLine());
+    boolean[] visited=new boolean[graph.length];
+    printAllPaths(src ,dest ,"",graph ,visited);
+  
+   public static void printAllPaths(int src ,int des ,String path ,ArrayList<Edge>[] graph ,boolean[] visited){
+       
+       if(src==des){
+           System.out.println(path+src);
+           return;
+       }
+       
+       visited[src]=true;
+       
+       for(Edge e :graph[src]){
+           
+           if(!visited[e.nbr]){
+               printAllPaths(e.nbr ,des ,path+src ,graph ,visited);
+           }
+           
+       }
+       
+       visited[src]=false;
+       
+   }

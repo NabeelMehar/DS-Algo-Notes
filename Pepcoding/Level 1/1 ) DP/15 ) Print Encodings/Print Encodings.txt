@@ -1,0 +1,52 @@
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/count-encodings-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sn=new Scanner(System.in);
+        
+        String str=sn.nextLine();
+        
+        HashMap<String , Integer> dp=new HashMap();
+        
+        System.out.println(getEncodings(str ,dp));
+        
+        
+    }
+    
+    
+    public static int getEncodings(String str ,HashMap<String , Integer> dp){
+        
+        if(str.length()==0){
+            return 1;
+        }
+        
+        if(str.charAt(str.length()-1)=='0'){
+            return 0;
+        }
+        
+        String key=str+"@";
+        
+        if(dp.containsKey(key)){
+            return dp.get(key);
+        }
+        
+        char ch=(char)(('a'-1)+(str.charAt(str.length()-1)));
+        
+        int val1=getEncodings(str.substring(0,str.length()-1), dp);
+        int val2=0;
+        
+        if(str.length()>1 && Integer.parseInt(str.substring(str.length()-2,str.length()))<=26){
+            val2=getEncodings(str.substring(0,str.length()-2) , dp);
+        }
+        dp.put(key , val1+val2);
+        return val1+val2;
+    
+    }
+    
+    
+}

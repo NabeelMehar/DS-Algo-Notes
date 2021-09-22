@@ -1,0 +1,44 @@
+
+//GFG
+
+import java.util.*;
+
+class GFG {
+	public static void main (String[] args) {
+		
+		Scanner sn=new Scanner(System.in);
+		
+		int n=sn.nextInt();
+		
+		int arr[]=new int[n];
+		
+		for(int i=0;i<n;i++){
+		    arr[i]=sn.nextInt();
+		}
+		
+		int tar=sn.nextInt();
+		
+		System.out.println(subSum(arr , n, tar));
+		
+		
+	}
+	
+	public static int subSum(int[] arr ,int n ,int tar){
+	    
+	    if(tar<0){
+	        return 0;
+	    }
+	    
+	    if(tar==0){
+	        return 1;
+	    }
+	    
+	    if(n==0){
+	        return 0;
+	    }
+	    
+	    return subSum(arr ,n-1 ,tar-arr[n-1])+subSum(arr ,n-1 ,tar);
+	    
+	    
+	}
+}

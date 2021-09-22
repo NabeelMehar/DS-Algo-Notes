@@ -1,0 +1,36 @@
+ 
+ //https://www.pepcoding.com/resources/online-java-foundation/stacks-and-queues/stock-span-official/ojquestion
+ 
+ public static int[] solve(int[] arr){
+     
+     Stack<Integer> st=new Stack();
+     
+     st.push(0);
+     
+     int[] sp=new int[arr.length];
+     sp[0]=1;
+     
+     for(int i=1;i<arr.length;i++){
+         
+         int cie=arr[i];
+         int les=0;
+         int c=0;
+         
+         while(!st.isEmpty() && arr[st.peek()]<cie){
+             st.pop();
+             c++;
+         }
+         
+         if(st.isEmpty()){
+             sp[i]=i+1;
+         }else{
+             sp[i]=i-st.peek();
+         }
+         
+         st.push(i);
+         
+     }
+     
+     
+   return sp;
+ }

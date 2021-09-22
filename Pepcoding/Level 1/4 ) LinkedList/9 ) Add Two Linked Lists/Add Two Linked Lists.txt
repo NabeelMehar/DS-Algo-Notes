@@ -1,0 +1,57 @@
+ //https://www.pepcoding.com/resources/online-java-foundation/linked-lists/add-two-linkedlists-official/ojquestion
+ 
+    public static int addTwoListsHelper(Node one ,int so ,Node two ,int st ,LinkedList sum){
+        
+        if(one==null){
+            return 0;
+        }
+        int c=0;
+        
+        if(so>st){
+            c=addTwoListsHelper(one.next,so-1 ,two ,st ,sum);
+            
+            int sm=one.data+c;
+            
+            if(sm>9){
+                sm=sm%10;
+                sum.addFirst(sm);
+                return 1;
+            }else{
+                sum.addFirst(sm);
+                return 0;
+            }
+            
+        }else{
+        
+        c=addTwoListsHelper(one.next,so-1 ,two.next ,st-1 ,sum);
+        
+        int sm=one.data+two.data+c;
+        
+            if(sm>9){
+                sm=sm%10;
+                sum.addFirst(sm);
+                return 1;
+            }else{
+                sum.addFirst(sm);
+                return 0;
+            }
+        }
+    }
+
+    public static LinkedList addTwoLists(LinkedList one, LinkedList two) {
+      
+      LinkedList sum=new LinkedList();
+      int c=0;
+      
+      if(one.size()>two.size()){
+      c=addTwoListsHelper(one.head,one.size() ,two.head ,two.size() ,sum);
+      }else{
+      c=addTwoListsHelper(two.head,two.size() ,one.head,one.size() ,sum);  
+      }
+      
+      if(c!=0){
+          sum.addFirst(c);
+      }
+      
+      return sum;
+    }

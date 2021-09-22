@@ -1,0 +1,44 @@
+//https://www.pepcoding.com/resources/online-java-foundation/hashmap-and-heap/hfc-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sn=new Scanner(System.in);
+        
+        HashMap<Character,Integer> hm=new HashMap();
+        
+        String s=sn.nextLine();
+        
+        for(int i=0;i<s.length();i++){
+            
+            char ch=s.charAt(i);
+            
+            if(hm.containsKey(ch)){
+                int val=hm.get(ch);
+                val++;
+                hm.put(ch ,val);
+            }else{
+                hm.put(ch ,1);
+            }
+        }
+        
+        int mx=Integer.MIN_VALUE;
+        char mc='h';
+        for(Character k : hm.keySet()){
+            
+            if(hm.get(k)>mx){
+                mx=hm.get(k);
+                mc=k;
+            }
+            
+            
+        }
+        
+        System.out.println(mc);
+    }
+
+}

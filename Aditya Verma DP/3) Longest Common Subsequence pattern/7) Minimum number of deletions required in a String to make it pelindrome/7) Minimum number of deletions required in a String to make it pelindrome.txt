@@ -1,0 +1,46 @@
+//GFG
+
+//https://practice.geeksforgeeks.org/problems/minimum-deletitions1648/1
+
+class Solution{
+    
+    static int minimumNumberOfDeletions(String s1)
+    {
+        
+        
+        String s2=new StringBuilder(s1).reverse().toString();
+        
+        int l1=s1.length();
+        int l2=s2.length();
+        
+        int[][] dp=new int[l1+1][l2+1];
+        
+        for(int i=0;i<dp.length;i++){
+         for(int j=0;j<dp[0].length;j++){
+            dp[i][j]=-1;
+         }   
+        }
+        
+        return l1-lcs(s1 ,s2 ,l1 ,l2 ,dp);
+        
+    }
+    
+     static int lcs(String s1 ,String s2 ,int l1 ,int l2 ,int[][] dp)
+    {
+        if(l1==0 || l2==0){
+            return 0;
+        }
+        if(dp[l1][l2]!=-1){
+            return dp[l1][l2];
+        }
+        
+        if(s1.charAt(l1-1)==s2.charAt(l2-1)){
+            return dp[l1][l2]=1+lcs(s1 ,s2 ,l1-1 ,l2-1 ,dp);
+        }else{
+            return dp[l1][l2]=Math.max(lcs(s1 ,s2 ,l1-1 ,l2 ,dp) ,lcs(s1 ,s2 ,l1 ,l2-1 ,dp));
+        }
+    
+    }
+    
+    
+}

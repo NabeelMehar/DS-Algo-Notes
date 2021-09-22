@@ -1,0 +1,26 @@
+
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
+
+//Resource
+//https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems
+
+class Solution {
+    public int maxProfit(int tk, int[] prices) {
+        
+        int[] dpik0=new int[tk+1];
+        int[] dpik1=new int[tk+1];
+        
+        Arrays.fill(dpik1 ,Integer.MIN_VALUE);
+        
+        for(int price :prices){
+            for(int k=tk;k>0;k--){
+                
+                dpik0[k]=Math.max(dpik0[k] , dpik1[k]+price);
+                dpik1[k]=Math.max(dpik1[k] , dpik0[k-1]-price);
+            
+            }   
+        }
+        
+        return dpik0[tk];
+    }
+}

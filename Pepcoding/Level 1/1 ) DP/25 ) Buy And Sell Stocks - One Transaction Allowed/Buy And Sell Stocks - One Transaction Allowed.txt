@@ -1,0 +1,44 @@
+
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/buy-and-sell-stocks-ota-official/ojquestion
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sn=new Scanner(System.in);
+        int n=sn.nextInt();
+        
+        int[] arr=new int[n];
+        
+        for(int i=0;i<arr.length;i++){
+            arr[i]=sn.nextInt();
+        }
+        
+        int smallestTillNow=arr[0];
+        int highestprofit=Integer.MIN_VALUE;
+        
+        for(int i=1;i<arr.length;i++){
+            
+            if(arr[i]<smallestTillNow){
+                smallestTillNow=arr[i];
+            }else{
+                
+                int potentialhi=arr[i]-smallestTillNow;
+                
+                if(potentialhi>highestprofit){
+                    highestprofit=potentialhi;
+                }
+            }
+            
+        }
+        
+        System.out.println(highestprofit);
+        
+        
+        
+    }
+
+}

@@ -1,0 +1,15 @@
+ //https://www.pepcoding.com/resources/online-java-foundation/generic-tree/mirror-generic-tree-official/ojquestion
+ 
+  public static void mirror(Node node){
+    
+    if(node==null){
+        return;
+    }
+    
+    Collections.reverse(node.children);
+    
+    for(Node child:node.children){
+        mirror(child);
+    }
+    
+  }

@@ -1,0 +1,28 @@
+ //https://www.pepcoding.com/resources/online-java-foundation/generic-tree/diameter-of-generic-tree-official/ojquestion
+  static int diameter;
+  
+  public static int getDiameter(Node node){
+      
+      int gr=0;
+      int sgr=0;
+      
+      for(Node child:node.children){
+          int h=getDiameter(child);
+          
+          if(h>gr){
+              sgr=gr;
+              gr=h;
+          }else if(h>sgr){
+              sgr=h;
+          }
+      }
+      
+      int cd=gr+sgr;
+      
+      if(cd>diameter){
+          diameter=cd;
+      }
+      
+      return gr+1;
+      
+  }

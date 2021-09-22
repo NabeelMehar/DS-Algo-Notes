@@ -1,0 +1,49 @@
+//https://www.pepcoding.com/resources/online-java-foundation/linked-lists/kreverse-linkedlist-official/ojquestion
+
+  public void kReverse(int k) {
+      
+       if(k>=this.size){
+            return;
+        }
+      
+      int n=this.size()-(this.size()%k);
+      
+      LinkedList mn=new LinkedList();
+      LinkedList tp=new LinkedList();
+      
+      for(int i=1;i<=k;i++){
+        int val=this.getFirst();
+        this.removeFirst();
+        mn.addFirst(val);
+      }
+      
+      for(int i=k+1;i<=n;i++){
+        
+        int val=this.getFirst();
+        this.removeFirst();
+        tp.addFirst(val);
+        
+        if((i%k)==0){
+            mn.tail.next=tp.head;
+            mn.tail=tp.tail;
+            tp.head=null;
+            tp.tail=null;
+            mn.size+=tp.size;
+            tp.size=0;
+            
+        }
+      }
+        
+        if(this.size()!=0){
+            
+        mn.tail.next=this.head;
+        this.head=mn.head;
+        
+        }else{
+            
+        this.head=mn.head;
+        this.tail=mn.tail;
+        this.size=mn.size;
+    
+        }
+    }

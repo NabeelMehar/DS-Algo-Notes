@@ -1,0 +1,21 @@
+  
+
+  //https://www.pepcoding.com/resources/online-java-foundation/time-and-space-complexity/quick-select-official/ojquestion
+  
+  public static int quickSelect(int[] arr, int lo, int hi, int k) {
+    
+    if(lo>=hi){
+        return 0;
+    }
+    
+    int pi=partition(arr ,arr[hi] ,lo ,hi);
+    
+    if(pi==k){
+        return arr[pi];
+    }else if(pi<k){
+        return quickSelect(arr ,pi+1 ,hi ,k);
+    }else{
+        return quickSelect(arr ,lo ,pi-1 ,k);
+    }
+    
+  }

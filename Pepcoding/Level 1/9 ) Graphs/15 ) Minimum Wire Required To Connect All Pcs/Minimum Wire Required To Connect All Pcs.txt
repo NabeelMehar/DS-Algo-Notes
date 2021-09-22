@@ -1,0 +1,43 @@
+ static class Pair implements Comparable<Pair> {
+      int src;
+      int wv;
+      int wt;
+
+      Pair(int src, int wv, int wt) {
+         this.src = src;
+         this.wv = wv;
+         this.wt = wt;
+      }
+      
+      public int compareTo(Pair other){
+          return this.wt-other.wt;
+      }
+   }
+ 
+ 
+ PriorityQueue<Pair> pq=new PriorityQueue();
+        
+        boolean[] visited=new boolean[vtces];
+        
+        pq.add(new Pair(0,-1,0));
+        
+        while(pq.size()>0){
+            
+            Pair cp=pq.remove();
+            
+            if(!visited[cp.src]){
+                
+                visited[cp.src]=true;
+                
+                if(cp.wv!=-1){
+                System.out.println("["+cp.src+"-"+cp.wv+"@"+cp.wt+"]");
+                }
+                
+                for(Edge e :graph[cp.src]){
+                    if(!visited[e.nbr]){
+                        pq.add(new Pair(e.nbr,cp.src,e.wt));
+                    }
+                }   
+            }
+            
+        }

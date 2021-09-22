@@ -1,0 +1,18 @@
+
+//https://www.pepcoding.com/resources/online-java-foundation/time-and-space-complexity/bubble-sorting-official/ojquestion
+
+public class Main {
+
+  public static void bubbleSort(int[] arr) {
+    
+    for(int i=1;i<arr.length;i++){
+         for(int j=0;j<arr.length-i;j++){
+            int k=j+1;
+            if(isSmaller(arr ,k ,j)){
+               swap(arr ,k ,j); 
+            }
+         }   
+    }
+    
+    
+  }

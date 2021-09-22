@@ -1,0 +1,38 @@
+ 
+ //https://www.pepcoding.com/resources/online-java-foundation/linked-lists/fold-linkedlist-official/ojquestion
+ 
+ public void foldHelper(Node node ,int floor){
+        
+        if(node==null){
+            return;
+        }
+        
+        foldHelper(node.next ,floor-1);
+        
+        if(floor>=1){
+            return;
+        }else{
+            
+            Node temp=left.next;
+            left.next=node;
+            left.next.next=temp;
+            left=temp;
+            
+        }
+    }
+
+    public void fold() {
+        
+        int floor=0;
+        if(this.size%2==0){
+            floor=size/2;
+        }else{
+            floor=size/2+1;
+        }
+
+      left=this.head;
+      foldHelper(this.head ,floor);
+      left.next=null;
+      this.tail=left;
+      
+    }

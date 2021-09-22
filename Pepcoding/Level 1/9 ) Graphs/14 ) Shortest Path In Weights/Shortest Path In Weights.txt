@@ -1,0 +1,48 @@
+//https://www.pepcoding.com/resources/online-java-foundation/graphs/shortest-path-in-weights-official/ojquestion
+
+static class Pair implements Comparable<Pair> {
+      int src;
+      int wsf;
+      String psf;
+
+      Pair(int src, int wsf, String psf) {
+         this.src = src;
+         this.wsf = wsf;
+         this.psf = psf;
+      }
+      
+      public int compareTo(Pair other){
+          return this.wsf-other.wsf;
+      }
+      
+   }
+
+
+
+int src = Integer.parseInt(br.readLine());
+      
+      boolean[] visited =new boolean[vtces];
+      
+      PriorityQueue<Pair> pq=new PriorityQueue();
+      
+      pq.add(new Pair(src ,0 ,""+src));
+      
+      while(pq.size()>0){
+          
+          Pair cp=pq.remove();
+          
+          if(!visited[cp.src]){
+            
+            visited[cp.src]=true;
+            
+            System.out.println(cp.src+" via "+cp.psf+" @ "+cp.wsf);
+              
+              for(Edge e : graph[cp.src]){
+                  if(!visited[e.nbr]){
+                      pq.add(new Pair(e.nbr ,cp.wsf+e.wt ,cp.psf+e.nbr));
+                  }
+              }
+          }
+          
+      }
+     

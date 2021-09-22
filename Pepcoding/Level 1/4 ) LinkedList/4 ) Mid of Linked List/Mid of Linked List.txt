@@ -1,0 +1,14 @@
+    //https://www.pepcoding.com/resources/online-java-foundation/linked-lists/mid-linked-list-official/ojquestion
+    
+    public int mid(){
+      
+      Node slow=head;
+      Node fast=head;
+      
+      while(fast!=tail && fast.next!=tail){
+          fast=fast.next.next;
+          slow=slow.next;
+      }
+      
+      return slow.data;
+    }

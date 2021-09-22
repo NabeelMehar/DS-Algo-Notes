@@ -1,0 +1,20 @@
+//https://www.pepcoding.com/resources/online-java-foundation/linked-lists/reverse-pi-official/ojquestion
+
+    public void reversePI(){
+      
+      Node p=null;
+      Node n=head;
+      
+      while(n!=null){
+          
+          Node t=n.next;
+          n.next=p;
+          p=n;
+          n=t;
+          
+      }
+      
+      Node temp=head;
+      head=tail;
+      tail=temp;
+    }

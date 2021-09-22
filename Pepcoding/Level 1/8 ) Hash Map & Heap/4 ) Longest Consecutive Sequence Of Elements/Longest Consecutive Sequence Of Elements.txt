@@ -1,0 +1,65 @@
+//https://www.pepcoding.com/resources/online-java-foundation/hashmap-and-heap/lcqs-official/ojquestion
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) throws Exception {
+    
+    Scanner sn=new Scanner(System.in);
+    int n=sn.nextInt();
+    
+    int[] arr=new int[n];
+    
+    for(int i=0;i<n;i++){
+        arr[i]=sn.nextInt();
+    }
+    
+    HashMap<Integer,Boolean> hm=new HashMap();
+    
+    for(int i=0;i<n;i++){
+        hm.put(arr[i] ,true);
+    }
+    
+    
+    for(int i=0;i<n;i++){
+        
+            int pe=arr[i]-1;
+        
+            if(hm.containsKey(pe)){
+                hm.put(arr[i],false);
+            }
+    }
+    
+    int mcount=0;
+    int msp=0;
+    
+    
+    for(int k :hm.keySet()){
+        
+        int count=0;
+        
+        if(hm.get(k)==true){
+            
+            int tv=k;
+            
+            while(hm.get(tv)!=null){
+                tv++;
+                count++;
+            }
+        }
+        
+        if(count>mcount){
+            mcount=count;
+            msp=k;
+        }
+        
+    }
+    
+    for(int i=0;i<mcount;i++){
+        System.out.println(msp+i);
+    }
+    
+ }
+
+}

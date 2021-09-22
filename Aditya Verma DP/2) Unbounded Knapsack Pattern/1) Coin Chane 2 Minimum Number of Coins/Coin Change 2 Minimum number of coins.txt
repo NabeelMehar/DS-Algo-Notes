@@ -1,0 +1,46 @@
+//GFG
+
+//https://practice.geeksforgeeks.org/problems/number-of-coins1824/1
+
+class Solution{
+
+	public int minCoins(int arr[], int n, int sum) 
+	{ 
+	    int[][] dp=new int[n+1][sum+1];
+	    return calcCoins(arr ,n ,sum ,dp)==Integer.MAX_VALUE-1?-1:calcCoins(arr ,n ,sum ,dp);
+	    
+	} 
+	
+	public static int calcCoins(int[] arr ,int n ,int sum ,int[][] dp){
+	    
+	    if(sum==0){
+	        return 0;
+	    }
+	    
+	    if(n==1){
+	        
+	        if(sum%arr[n-1]==0){
+	            return sum/arr[n-1];
+	        }else{
+	            return Integer.MAX_VALUE-1;
+	        }
+	        
+	    }
+	    
+	   if(n==0){
+	        return Integer.MAX_VALUE-1;
+	    }
+	    
+	    if(dp[n][sum]!=0){
+	        return dp[n][sum];
+	    }
+	    
+	    if(arr[n-1] <= sum){
+	        return dp[n][sum]=Math.min(1+calcCoins(arr ,n ,sum-arr[n-1] ,dp) ,calcCoins(arr ,n-1 ,sum ,dp));
+	    }else{
+	        return dp[n][sum]=calcCoins(arr ,n-1 ,sum ,dp);
+	    }
+	    
+	    
+	}
+}

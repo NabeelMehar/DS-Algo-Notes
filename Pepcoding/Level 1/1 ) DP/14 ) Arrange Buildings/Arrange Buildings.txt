@@ -1,0 +1,35 @@
+
+//https://www.pepcoding.com/resources/online-java-foundation/dynamic-programming-and-greedy/arrange-buildings-official/ojquestion#
+
+import java.io.*;
+import java.util.*;
+
+public class Main{
+
+public static void main(String[] args) throws Exception {
+    
+    Scanner sn=new Scanner(System.in);
+    
+    int n=sn.nextInt();
+    
+    
+    long val=findWays(n-1 ,'b')+findWays(n-1 ,'s');
+    System.out.println(val*val);
+    
+    
+ }
+ 
+ public static long findWays(int n ,char ch){
+     
+     if(n==0){
+         return 1;
+     }
+     
+     if(ch=='b'){
+        return findWays(n-1 ,'s');
+     }else{
+        return findWays(n-1 ,'b')+findWays(n-1 ,'s');
+     }
+ }
+ 
+}

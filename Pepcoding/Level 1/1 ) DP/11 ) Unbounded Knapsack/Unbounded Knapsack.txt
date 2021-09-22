@@ -1,0 +1,56 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sn=new Scanner(System.in);
+        
+        int n=sn.nextInt();
+        
+        int[] varr=new int[n];
+        int[] warr=new int[n];
+        
+        for(int i=0 ;i<n ;i++){
+            varr[i]=sn.nextInt();
+        }
+        
+        for(int i=0 ;i<n ;i++){
+            warr[i]=sn.nextInt();
+        }
+        
+        int cap=sn.nextInt();
+        
+        int[][] dp=new int[n+1][cap+1];
+        
+        for(int[] a : dp){
+            Arrays.fill(a ,-1);
+        }
+        
+        System.out.println(unboundedKnapsack(n ,cap ,varr ,warr ,dp));
+        
+    }
+    
+    
+    public static int unboundedKnapsack(int n ,int cap ,int[] varr ,int[] warr ,int[][] dp){
+        
+        if(cap==0 || n==0){
+            return 0;
+        }
+        
+        if(dp[n][cap]!=-1){
+            return dp[n][cap];
+        }
+        
+        if(warr[n-1]<=cap){
+            return dp[n][cap]=Math.max(varr[n-1]+unboundedKnapsack(n ,cap-warr[n-1] ,varr ,warr ,dp) ,unboundedKnapsack(n-1 ,cap ,varr ,warr ,dp));
+        }else{
+            return dp[n][cap]=unboundedKnapsack(n-1 ,cap ,varr ,warr ,dp);
+        }
+        
+        
+    }
+    
+    
+}

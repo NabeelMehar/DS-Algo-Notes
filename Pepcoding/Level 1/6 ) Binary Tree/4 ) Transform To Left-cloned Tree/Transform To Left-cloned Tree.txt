@@ -1,0 +1,17 @@
+ //https://www.pepcoding.com/resources/online-java-foundation/binary-tree/transform-to-left-cloned-tree-official/ojquestion
+ 
+  public static Node createLeftCloneTree(Node node){
+    
+    if(node==null){
+        return null;
+    }
+    
+    Node temp=node.left;
+    Node newNode=new Node(node.data ,temp,null);
+    node.left=newNode;
+    
+    createLeftCloneTree(node.left.left);
+    createLeftCloneTree(node.right);
+    
+    return node; 
+  }

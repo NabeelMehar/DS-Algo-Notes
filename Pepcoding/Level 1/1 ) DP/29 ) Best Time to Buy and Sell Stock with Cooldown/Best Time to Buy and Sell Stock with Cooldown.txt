@@ -1,0 +1,29 @@
+
+
+//https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
+
+//Resource
+//https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems
+
+class Solution {
+    public int maxProfit(int[] prices) {
+     
+        int dpik0=0;
+        int dpik0_pre=0;
+        int dpik1=Integer.MIN_VALUE;
+        
+        
+        for(int price :prices){
+            
+            int dpik0_old=dpik0;
+            
+            dpik0=Math.max(dpik0 ,dpik1+price);
+            dpik1=Math.max(dpik1 ,dpik0_pre-price);
+            
+            dpik0_pre=dpik0_old;
+        }
+        
+        return dpik0;
+        
+    }
+}

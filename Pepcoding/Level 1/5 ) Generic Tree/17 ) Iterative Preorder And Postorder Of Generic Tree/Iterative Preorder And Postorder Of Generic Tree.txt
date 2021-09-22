@@ -1,0 +1,37 @@
+//https://www.pepcoding.com/resources/online-java-foundation/generic-tree/iterative-preorder-postorder-generic-tree-official/ojquestion
+
+  public static void IterativePreandPostOrder(Node node) {
+    Stack<Pair> st=new Stack();
+    
+    String pre="";
+    String post="";
+    st.push(new Pair(node,0,'p'));
+    
+    while(!st.isEmpty()){
+        
+        Pair p=st.pop();
+        
+        if(p.state=='p'){
+            
+            pre=pre+p.node.data+" ";
+            p.state='o';
+            st.push(p);
+            
+        }else if(p.state=='o'){
+            
+            if(p.ci<p.node.children.size()){
+                
+                p.ci++;
+                st.push(p);
+                st.push(new Pair(p.node.children.get(p.ci-1),0,'p'));
+                
+            }else{
+                post=post+p.node.data+" ";
+            }
+            
+        }
+    }
+    
+    System.out.println(pre);
+    System.out.println(post);
+  }
